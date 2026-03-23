@@ -1,10 +1,14 @@
 package com.satyam.nutriFetch.Controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.satyam.nutriFetch.Model.FoodLogs.Food;
 import com.satyam.nutriFetch.Model.HelperModel;
 import com.satyam.nutriFetch.Model.Product;
 import com.satyam.nutriFetch.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @CrossOrigin("*")
@@ -13,6 +17,8 @@ public class ProductController {
 
     @Autowired
     ProductService productService;
+
+    ObjectMapper objectMapper = new ObjectMapper();
 
 
     @PostMapping("/scan")
@@ -37,9 +43,10 @@ public class ProductController {
     }
 
     @PostMapping("/log")
-    public void foodLog(@RequestBody String foodId, @RequestBody String quantity){
-        System.out.println(foodId);
-        System.out.println(quantity);
+    public void foodLog(@RequestBody Map<String, Object> body){
+        Food food = objectMapper.convertValue(body.get("foodId"),Food.class);
+        System.out.println(food);
+        productService.saveLog(food);
     }
 
 

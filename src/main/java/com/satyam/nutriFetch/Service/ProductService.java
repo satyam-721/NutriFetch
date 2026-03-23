@@ -2,7 +2,9 @@ package com.satyam.nutriFetch.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.satyam.nutriFetch.Model.FoodLogs.Food;
 import com.satyam.nutriFetch.Model.Product;
+import com.satyam.nutriFetch.Repo.FoodRepo;
 import com.satyam.nutriFetch.Repo.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,9 @@ public class ProductService {
 
     @Autowired
     ProductRepo repo;
+
+    @Autowired
+    FoodRepo foodRepo;
 
     public Product findById(String barcode) {
         return repo.findById(barcode).orElse(null);
@@ -46,6 +51,10 @@ public class ProductService {
     public Product save(Product analysedProduct) {
 
         return repo.save(analysedProduct);
+    }
+
+    public void saveLog(Food food) {
+        foodRepo.save(food);
     }
 }
 
