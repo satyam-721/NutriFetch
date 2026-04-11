@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 7%;
+    --foreground: 160 10% 92%;
+
+    --card: 220 18% 10%;
+    --card-foreground: 160 10% 92%;
+
+    --popover: 220 18% 12%;
+    --popover-foreground: 160 10% 92%;
+
+    --primary: 152 60% 48%;
+    --primary-foreground: 220 20% 7%;
+
+    --secondary: 220 16% 16%;
+    --secondary-foreground: 160 10% 85%;
+
+    --muted: 220 14% 14%;
+    --muted-foreground: 220 10% 55%;
+
+    --accent: 38 92% 55%;
+    --accent-foreground: 220 20% 7%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 14% 18%;
+    --input: 220 14% 18%;
+    --ring: 152 60% 48%;
+
+    --radius: 0.75rem;
+
+    --health-excellent: 152 60% 48%;
+    --health-good: 120 50% 45%;
+    --health-moderate: 38 92% 55%;
+    --health-poor: 15 80% 55%;
+    --health-bad: 0 72% 55%;
+
+    --nutrient-protein: 210 80% 60%;
+    --nutrient-carbs: 38 92% 55%;
+    --nutrient-fat: 340 70% 60%;
+    --nutrient-fiber: 152 60% 48%;
+
+    --sidebar-background: 220 18% 10%;
+    --sidebar-foreground: 160 10% 92%;
+    --sidebar-primary: 152 60% 48%;
+    --sidebar-primary-foreground: 220 20% 7%;
+    --sidebar-accent: 220 16% 16%;
+    --sidebar-accent-foreground: 160 10% 85%;
+    --sidebar-border: 220 14% 18%;
+    --sidebar-ring: 152 60% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl;
+  }
+  .glow-primary {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.15), 0 0 60px hsl(var(--primary) / 0.05);
+  }
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.7));
+  }
+  .gradient-score-excellent {
+    background: linear-gradient(135deg, hsl(var(--health-excellent)), hsl(152 60% 38%));
+  }
+  .gradient-score-good {
+    background: linear-gradient(135deg, hsl(var(--health-good)), hsl(120 50% 35%));
+  }
+  .gradient-score-moderate {
+    background: linear-gradient(135deg, hsl(var(--health-moderate)), hsl(38 92% 45%));
+  }
+  .gradient-score-poor {
+    background: linear-gradient(135deg, hsl(var(--health-poor)), hsl(15 80% 45%));
+  }
+  .gradient-score-bad {
+    background: linear-gradient(135deg, hsl(var(--health-bad)), hsl(0 72% 45%));
+  }
+}
